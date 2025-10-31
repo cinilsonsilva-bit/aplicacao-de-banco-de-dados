@@ -1,0 +1,29 @@
+<!-- criar um site simples para mostrar os dados vindos da api -->
+<!-- Comentário ctrl k + u -->
+
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<title id="titlePage">Empresas</title>
+</head>
+<body>
+<div id="titleCompany" style="color: blue; border: 1px solid black; font-size: 25px; font-weight: bold"> Loading...
+</div>
+<div id="meuId" style="font-weight: bold; color: darkBlue"> Loading... </div>
+<script>
+        fetch('https://69014f56ff8d792314bd1081.mockapi.io/v1/empresas')
+            .then(r => r.json())
+            .then(data => {
+                document.getElementById('meuId').innerHTML = data.map(company =>
+                    `${company.NOME} - ${company.CNPJ} - ${company.CIDADE}`
+                ).join('<br>');
+            });
+        fetch('https://9xk3g225ma.execute-api.sa-east-1.amazonaws.com/default/lambdaLicitacoesEmpresariaisNilson')
+            .then(r => r.json())
+            .then(data => {
+                document.getElementById('titleCompany').innerHTML = data;
+                document.getElementById('titlePage').innerHTML = data;
+            })
+</script>
+</body>
+</html>
